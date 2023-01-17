@@ -1,31 +1,50 @@
-// let database = ["", "", "", "", "", "", "", "", ""]
+let database = ["", "", "", "", "", "", "", "", ""]
 let grid = document.querySelectorAll("section.grid div");
 let logger = document.querySelector("div.log");
 let whichTurn = false;
-let winIs = false;
+let gameEnd = false;
 
 function reload() {
     location.reload();
 }
 
-function ticTacToe(x) {
-    if (winIs) {
-        logger.innerHTML += `<br>Clic on "Play again !" if you want to... play again.`;
+function rand(i) {
+    return Math.ceil(Math.random() * (i - 1))
+}
+
+function display() {
+    for (let i = 0; i < grid.length; i++) {
+        grid[i].textContent = database[i];
     }
-    else if (grid[x].textContent == "X" || grid[x].textContent == "O") {
-        logger.textContent = "Allready played, choose another cell.";
+}
+
+function play(x) {
+    if (gameEnd) {
+        logger.innerHTML += `<br>Click on "Play again !" if you want to... play again.`;
+    }
+    else if ((whichTurn == false) && (database[x] == "X" || database[x] == "O")) {
+        logger.textContent = "Already played, choose another cell.";
     }
     else {
         if (whichTurn) {
-            whichTurn = false;
-            grid[x].textContent = "O";
-            whoWin();
+            if (database[x] == "X" || database[x] == "O") {
+                play(rand(9));
+            }
+            else {
+                database[x] = "O";
+                display();
+                whoWin();
+                whichTurn = false;
+            }
         }
         else {
-            whichTurn = true;
-            grid[x].textContent = "X";
+            database[x] = "X";
+            display();
             whoWin();
-            // noBrainAI(rand);
+            whichTurn = true;
+            setTimeout(() => {
+                play(rand(9))
+            }, 100);;
         }
     }
 }
@@ -38,85 +57,28 @@ function theOWin() {
 }
 
 function whoWin() {
-    // For X
-    if (grid[0].textContent == "X" && grid[1].textContent == "X" && grid[2].textContent == "X") {
-        theXWin();
-        winIs = true;
-    }
-    else if (grid[0].textContent == "X" && grid[3].textContent == "X" && grid[6].textContent == "X") {
-        theXWin();
-        winIs = true;
-    }
-    else if (grid[0].textContent == "X" && grid[4].textContent == "X" && grid[8].textContent == "X") {
-        theXWin();
-        winIs = true;
-    }
-    else if (grid[1].textContent == "X" && grid[4].textContent == "X" && grid[7].textContent == "X") {
-        theXWin();
-        winIs = true;
-    }
-    else if (grid[3].textContent == "X" && grid[4].textContent == "X" && grid[5].textContent == "X") {
-        theXWin();
-        winIs = true;
-    }
-    else if (grid[2].textContent == "X" && grid[5].textContent == "X" && grid[8].textContent == "X") {
-        theXWin();
-        winIs = true;
-    }
-    else if (grid[2].textContent == "X" && grid[4].textContent == "X" && grid[6].textContent == "X") {
-        theXWin();
-        winIs = true;
-    }
-    else if (grid[6].textContent == "X" && grid[7].textContent == "X" && grid[8].textContent == "X") {
-        theXWin();
-        winIs = true;
-    }
-    // For O
-    else if (grid[0].textContent == "O" && grid[1].textContent == "O" && grid[2].textContent == "O") {
-        theOWin();
-        winIs = true;
-    }
-    else if (grid[0].textContent == "O" && grid[3].textContent == "O" && grid[6].textContent == "O") {
-        theOWin();
-        winIs = true;
-    }
-    else if (grid[0].textContent == "O" && grid[4].textContent == "O" && grid[8].textContent == "O") {
-        theOWin();
-        winIs = true;
-    }
-    else if (grid[1].textContent == "O" && grid[4].textContent == "O" && grid[7].textContent == "O") {
-        theOWin();
-        winIs = true;
-    }
-    else if (grid[3].textContent == "O" && grid[4].textContent == "O" && grid[5].textContent == "O") {
-        theOWin();
-        winIs = true;
-    }
-    else if (grid[2].textContent == "O" && grid[5].textContent == "O" && grid[8].textContent == "O") {
-        theOWin();
-        winIs = true;
-    }
-    else if (grid[2].textContent == "O" && grid[4].textContent == "O" && grid[6].textContent == "O") {
-        theOWin();
-        winIs = true;
-    }
-    else if (grid[6].textContent == "O" && grid[7].textContent == "O" && grid[8].textContent == "O") {
-        theOWin();
-        winIs = true;
-    }
-}
+    for (let j = 0; j < 2; j++) {
+        p = (j == 0 ? "X" : "O")
 
-// let rand = Math.floor(Math.random() * 8)
-
-// function noBrainAI(x) {
-//     if (grid[x].textContent == "X" || grid[x].textContent == "O") {
-//         noBrainAI(rand);
-//     }
-//     else {
-//         ticTacToe(x);
-//     }
-// }
-
-for (i = 0; i < grid.length; i++) {
-
+        for (r = 0; r < database.length; r = r + 3) {
+            if (database[r] == p && database[r + 1] == p && database[r + 2] == p) {
+                logger.textContent = `Player ${p} wins !`;
+                gameEnd = true;
+            }
+        }
+        for (c = 0; c < database.length; c++) {
+            if (database[c] == p && database[c + 3] == p && database[c + 6] == p) {
+                logger.textContent = `Player ${p} wins !`;
+                gameEnd = true;
+            }
+        }
+        if (database[0] == p && database[4] == p && database[8] == p) {
+            logger.textContent = `Player ${p} wins !`;
+            gameEnd = true;
+        }
+        else if (database[2] == p && database[4] == p && database[6] == p) {
+            logger.textContent = `Player ${p} wins !`;
+            gameEnd = true;
+        }
+    }
 }
