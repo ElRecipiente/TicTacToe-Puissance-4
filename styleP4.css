@@ -1,0 +1,59 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    width: 50%;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    margin: 2em;
+    font-size: 2em;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+section.grid {
+    display: grid;
+    margin: 0 auto;
+    width: fit-content;
+    grid-template-columns: 100px 100px 100px 100px 100px 100px;
+    grid-template-rows: 100px 100px 100px 100px 100px 100px;
+    gap: 0.5em;
+    text-align: center;
+}
+
+section.grid div {
+    background: rgb(49, 78, 116);
+    color: white;
+    border-radius: 0.05em;
+    font-size: 90px;
+    font-family: Arial, Helvetica, sans-serif;
+    transition: 1s;
+}
+
+section.grid div:hover {
+    background: rgb(119, 222, 248);
+    animation: boing 1s infinite;
+}
+
+@keyframes boing {
+    0% {
+        margin-top: 0.02em;
+        margin-bottom: -0.02em;
+    }
+    25% {
+        margin-top: -0.02em;
+        margin-bottom: 0.02em;
+    }
+    50% {
+        margin-top: 0.02em;
+        margin-bottom: -0.02em;
+    }
+    75% {
+        margin-top: -0.02em;
+        margin-bottom: 0.02em;
+    }
+}

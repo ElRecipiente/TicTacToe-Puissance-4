@@ -49,13 +49,6 @@ function play(x) {
     }
 }
 
-function theXWin() {
-    logger.textContent = "Player X wins !";
-}
-function theOWin() {
-    logger.textContent = "Player O wins !";
-}
-
 function whoWin() {
     for (let j = 0; j < 2; j++) {
         p = (j == 0 ? "X" : "O")
