@@ -22,6 +22,12 @@ h2 {
     font-style: italic;
 }
 
+.alien {
+    position: absolute;
+    top: 50%;
+    right: 0;
+}
+
 .logger {
     backdrop-filter: blur(100px);
     padding: 1em 2em;
