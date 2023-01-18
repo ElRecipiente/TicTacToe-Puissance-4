@@ -5,6 +5,8 @@ let logger = document.querySelector("div.log");
 let whichTurn = false;
 let gameEnd = false;
 
+logger.textContent = "Welcome to P4 !"
+
 // We want (database.length == 36) here
 for (i = 0; i < 35; i++) {
     database.push("");
@@ -37,8 +39,11 @@ function full(y) {
     }
 }
 
+function scrollStayBottom() {
+    logger.scrollTop = logger.scrollHeight
+}
 
-
+//inject pulse color when turn X / O true
 function pulseRed() {
     for (let i = 0; i < 6; i++) {
         inputCoin[i].classList.remove("pulseBlue");
@@ -71,7 +76,7 @@ function fall(y) {
     else if (whichTurn) {
         // here play "O"
         if (full(y)) {
-            logger.textContent = "Column full, please try another."
+            logger.innerHTML += `<br>Column full, please try another.`
         }
         else if ((database[y] != "X" && database[y] != "O") && y <= 30) {
             console.log("case courante dispo, following")
@@ -83,6 +88,7 @@ function fall(y) {
             grid[y - 6].classList.add("blue");
             display();
             whoWin();
+            whichTurn = false;
         }
         else {
             console.log("coucou je suis else")
@@ -90,14 +96,14 @@ function fall(y) {
             grid[y].classList.add("blue");
             display();
             whoWin();
+            whichTurn = false;
         }
-        whichTurn = false;
         pulseRed();
     }
     // here play "X"
     else {
         if (full(y)) {
-            logger.textContent = "Column full, please try another."
+            logger.innerHTML += `<br>Column full, please try another.`
         }
         else if ((database[y] != "X" && database[y] != "O") && y <= 30) {
             console.log("case courante dispo, following")
@@ -109,6 +115,7 @@ function fall(y) {
             grid[y - 6].classList.add("red");
             display();
             whoWin();
+            whichTurn = true;
         }
         else {
             console.log("coucou je suis else")
@@ -116,10 +123,12 @@ function fall(y) {
             grid[y].classList.add("red");
             display();
             whoWin();
+            whichTurn = true;
         }
-        whichTurn = true;
         pulseBlue();
+
     }
+    scrollStayBottom();
 }
 
 //tell in log when a player win
@@ -132,7 +141,7 @@ function whoWin() {
             if ((database[r] == p && database[r + 1] == p && database[r + 2] == p && database[r + 3] == p)
                 || (database[r + 1] == p && database[r + 2] == p && database[r + 3] == p && database[r + 4] == p)
                 || (database[r + 2] == p && database[r + 3] == p && database[r + 4] == p && database[r + 5] == p)) {
-                logger.textContent = `Player ${p} wins !`;
+                logger.innerHTML += `<br>Player ${p} wins !`;
                 gameEnd = true;
             }
         }
@@ -140,19 +149,19 @@ function whoWin() {
         //  for rows
         for (c = 0; c < database.length; c++) {
             if (database[c] == p && database[c + 6] == p && database[c + 12] == p && database[c + 18] == p) {
-                logger.textContent = `Player ${p} wins !`;
+                logger.innerHTML += `<br>Player ${p} wins !`;
                 gameEnd = true;
             }
 
             //and diags
             else if (((c <= 2) || (c >= 6 && c <= 8) || (c >= 12))
                 && database[c] == p && database[c + 7] == p && database[c + 14] == p && database[c + 21] == p) {
-                logger.textContent = `Player ${p} wins !`;
+                logger.innerHTML += `<br>Player ${p} wins !`;
                 gameEnd = true;
             }
             else if (((c >= 3 && c <= 5) || (c >= 9 && c <= 11) || (c >= 15 && c <= 17))
                 && database[c] == p && database[c + 5] == p && database[c + 10] == p && database[c + 15] == p) {
-                logger.textContent = `Player ${p} wins !`;
+                logger.innerHTML += `<br>Player ${p} wins !`;
                 gameEnd = true;
             }
         }
