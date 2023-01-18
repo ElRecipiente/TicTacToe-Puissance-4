@@ -1,5 +1,6 @@
 let database = []
 let grid = document.querySelectorAll("section.grid div");
+let inputCoin = document.querySelectorAll("section.grid div#hoverable");
 let logger = document.querySelector("div.log");
 let whichTurn = false;
 let gameEnd = false;
@@ -7,7 +8,6 @@ let gameEnd = false;
 // We want (database.length == 36) here
 for (i = 0; i < 35; i++) {
     database.push("");
-    console.log(database.length)
 }
 
 // reload
@@ -37,6 +37,32 @@ function full(y) {
     }
 }
 
+
+
+function pulseRed() {
+    for (let i = 0; i < 6; i++) {
+        inputCoin[i].classList.remove("pulseBlue");
+        if (!inputCoin[i].classList.contains("blue") && !inputCoin[i].classList.contains("red")) {
+
+            inputCoin[i].classList.add("pulseRed");
+            console.log(`all red number ${i}`)
+        }
+    }
+}
+
+function pulseBlue() {
+    for (let i = 0; i < 6; i++) {
+        inputCoin[i].classList.remove("pulseRed");
+
+        if (inputCoin[i].classList.contains("blue") == false && inputCoin[i].classList.contains("red") == false) {
+            inputCoin[i].classList.add("pulseBlue");
+            console.log(`all blue number ${i}`)
+        }
+    }
+}
+
+pulseRed();
+
 // made symbol "fall" in the grid, like a Puissance 4
 function fall(y) {
     if (gameEnd) {
@@ -54,18 +80,19 @@ function fall(y) {
         else if (database[y] == "X" || database[y] == "O" || y > 35) {
             console.log("case courante pas dispo, placement au precedent")
             database[y - 6] = "O";
-            grid[y - 6].classList.add("yellow");
+            grid[y - 6].classList.add("blue");
             display();
             whoWin();
         }
         else {
             console.log("coucou je suis else")
             database[y] = "O"
-            grid[y].classList.add("yellow");
+            grid[y].classList.add("blue");
             display();
             whoWin();
         }
         whichTurn = false;
+        pulseRed();
     }
     // here play "X"
     else {
@@ -91,6 +118,7 @@ function fall(y) {
             whoWin();
         }
         whichTurn = true;
+        pulseBlue();
     }
 }
 

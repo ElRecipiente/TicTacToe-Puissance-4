@@ -1,6 +1,9 @@
 body {
+    background-image: url(img/duality.jpg);
+    background-size: 100%;
     margin: 0;
     padding: 0;
+    color: white;
 }
 
 main {
@@ -26,8 +29,8 @@ section.grid {
 }
 
 section.grid div {
-    background: black;
-    color: black;
+    backdrop-filter: blur(100px);
+    color: transparent;
     border-radius: 0.05em;
     font-size: 90px;
     font-family: Arial, Helvetica, sans-serif;
@@ -35,7 +38,6 @@ section.grid div {
 }
 
 section.grid div#hoverable:hover {
-    background: black;
     animation: boing 1s infinite;
 }
 
@@ -59,21 +61,61 @@ section.grid div#hoverable:hover {
 }
 
 section.grid div.red {
-    background: red;
-    color: red;
-    animation: borderR 1s;
+    background: rgb(255, 53, 53);
+    animation: borderR 3s;
     animation-fill-mode: forwards;
 }
 
-section.grid div.yellow {
-    background: yellow;
-    color: yellow;
-    animation: borderR 1s ;
+section.grid div.blue {
+    background: rgb(123, 123, 255);
+    animation: borderR 3s ;
     animation-fill-mode: forwards;
 }
 
 @keyframes borderR {
     100% {
-        border-radius: 10em;
+        border-radius: 5em;
+    }
+}
+
+section.grid div#hoverable.pulseRed {
+    animation: pulseRed 2s infinite;
+}
+
+@keyframes pulseRed {
+    25% {
+        background: rgb(255, 53, 53);
+        opacity: 50%;
+    }
+    50% {
+        background: transparent;
+    }
+    75% {
+        background: rgb(255, 53, 53);
+        opacity: 50%;
+    }
+    100% {
+        background: transparent;
+    }
+}
+
+section.grid div#hoverable.pulseBlue {
+    animation: pulseBlue 2s infinite;
+}
+
+@keyframes pulseBlue {
+    25% {
+        background: rgb(123, 123, 255);
+        opacity: 50%;
+    }
+    50% {
+        background: transparent;
+    }
+    75% {
+        background: rgb(123, 123, 255);
+        opacity: 50%;
+    }
+    100% {
+        background: transparent;
     }
 }
