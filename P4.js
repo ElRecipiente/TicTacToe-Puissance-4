@@ -54,12 +54,14 @@ function fall(y) {
         else if (database[y] == "X" || database[y] == "O" || y > 35) {
             console.log("case courante pas dispo, placement au precedent")
             database[y - 6] = "O";
+            grid[y - 6].classList.add("yellow");
             display();
             whoWin();
         }
         else {
             console.log("coucou je suis else")
             database[y] = "O"
+            grid[y].classList.add("yellow");
             display();
             whoWin();
         }
@@ -77,12 +79,14 @@ function fall(y) {
         else if (database[y] == "X" || database[y] == "O" || y > 35) {
             console.log("case courante pas dispo, placement au precedent")
             database[y - 6] = "X";
+            grid[y - 6].classList.add("red");
             display();
             whoWin();
         }
         else {
             console.log("coucou je suis else")
             database[y] = "X"
+            grid[y].classList.add("red");
             display();
             whoWin();
         }
@@ -94,6 +98,7 @@ function fall(y) {
 function whoWin() {
     for (let j = 0; j < 2; j++) {
         p = (j == 0 ? "X" : "O")
+
         // for columns
         for (r = 0; r < database.length; r = r + 6) {
             if ((database[r] == p && database[r + 1] == p && database[r + 2] == p && database[r + 3] == p)
@@ -112,7 +117,7 @@ function whoWin() {
             }
 
             //and diags
-            else if (((c <= 2 && c >= 6) || (c <= 8 && c >= 12))
+            else if (((c <= 2) || (c >= 6 && c <= 8) || (c >= 12))
                 && database[c] == p && database[c + 7] == p && database[c + 14] == p && database[c + 21] == p) {
                 logger.textContent = `Player ${p} wins !`;
                 gameEnd = true;

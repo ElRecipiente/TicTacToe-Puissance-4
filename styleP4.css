@@ -26,16 +26,16 @@ section.grid {
 }
 
 section.grid div {
-    background: rgb(49, 78, 116);
-    color: white;
+    background: black;
+    color: black;
     border-radius: 0.05em;
     font-size: 90px;
     font-family: Arial, Helvetica, sans-serif;
     transition: 1s;
 }
 
-section.grid div:hover {
-    background: rgb(119, 222, 248);
+section.grid div#hoverable:hover {
+    background: black;
     animation: boing 1s infinite;
 }
 
@@ -55,5 +55,25 @@ section.grid div:hover {
     75% {
         margin-top: -0.02em;
         margin-bottom: 0.02em;
+    }
+}
+
+section.grid div.red {
+    background: red;
+    color: red;
+    animation: borderR 1s;
+    animation-fill-mode: forwards;
+}
+
+section.grid div.yellow {
+    background: yellow;
+    color: yellow;
+    animation: borderR 1s ;
+    animation-fill-mode: forwards;
+}
+
+@keyframes borderR {
+    100% {
+        border-radius: 10em;
     }
 }
