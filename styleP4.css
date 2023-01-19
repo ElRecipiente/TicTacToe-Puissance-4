@@ -79,6 +79,29 @@ section.grid div {
     transition: 1s;
 }
 
+section.grid div#hoverable:hover {
+    animation: boing 1s infinite;
+}
+
+@keyframes boing {
+    0% {
+        margin-top: 0.02em;
+        margin-bottom: -0.02em;
+    }
+    25% {
+        margin-top: -0.02em;
+        margin-bottom: 0.02em;
+    }
+    50% {
+        margin-top: 0.02em;
+        margin-bottom: -0.02em;
+    }
+    75% {
+        margin-top: -0.02em;
+        margin-bottom: 0.02em;
+    }
+}
+
 section.grid div.red {
     background: rgb(255, 53, 53);
     animation: borderR 3s;
@@ -140,9 +163,11 @@ section.grid div#hoverable.pulseBlue {
 section.grid div.redFall {
     background: rgb(255, 53, 53);
     border-radius: 5em;
+    opacity: 200%;
 }
 
 section.grid div.blueFall {
     background: rgb(123, 123, 255);
     border-radius: 5em;
+    opacity: 200%;
 }
