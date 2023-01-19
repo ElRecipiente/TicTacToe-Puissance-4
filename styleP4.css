@@ -159,3 +159,13 @@ section.grid div#hoverable.pulseBlue {
         background: transparent;
     }
 }
+
+section.grid div.redFall {
+    background: rgb(255, 53, 53);
+    border-radius: 5em;
+}
+
+section.grid div.blueFall {
+    background: rgb(123, 123, 255);
+    border-radius: 5em;
+}

@@ -15,6 +15,14 @@ h1 {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
+a button {
+    transition: 1s;
+}
+
+a button:hover {
+    scale: 500%;
+}
+
 section.grid {
     display: grid;
     margin: 0 auto;

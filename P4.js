@@ -80,7 +80,12 @@ function fall(y) {
         }
         else if ((database[y] != "X" && database[y] != "O") && y <= 30) {
             console.log("case courante dispo, following")
-            fall(y + 6);
+            grid[y].classList.add("blueFall")
+            setTimeout(() => {
+                grid[y].classList.remove("blueFall");
+                fall(y + 6);
+            },300)
+            ;
         }
         else if (database[y] == "X" || database[y] == "O" || y > 35) {
             console.log("case courante pas dispo, placement au precedent")
@@ -107,7 +112,12 @@ function fall(y) {
         }
         else if ((database[y] != "X" && database[y] != "O") && y <= 30) {
             console.log("case courante dispo, following")
-            fall(y + 6);
+            grid[y].classList.add("redFall")
+            setTimeout(() => {
+                grid[y].classList.remove("redFall");
+                fall(y + 6);
+            },300)
+            
         }
         else if (database[y] == "X" || database[y] == "O" || y > 35) {
             console.log("case courante pas dispo, placement au precedent")
