@@ -78,10 +78,13 @@ section.grid div {
     font-size: 90px;
     font-family: Arial, Helvetica, sans-serif;
     transition: 1s;
+}
+
+section.grid div#hoverable {
     cursor: pointer;
 }
 
-section.grid div#hoverable:hover {
+/* section.grid div#hoverable:hover {
     animation: boing 1s infinite;
 }
 
@@ -102,7 +105,7 @@ section.grid div#hoverable:hover {
         margin-top: -0.02em;
         margin-bottom: 0.02em;
     }
-}
+} */
 
 section.grid div.red {
     background: rgb(250, 184, 40);
