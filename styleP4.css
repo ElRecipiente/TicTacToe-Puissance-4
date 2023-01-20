@@ -1,6 +1,4 @@
 body {
-    background-image: url(img/duality.jpg);
-    background-size: 100%;
     margin: 0;
     padding: 0;
     color: white;
@@ -11,15 +9,18 @@ main {
     margin: 0 auto;
 }
 
+video {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    z-index: -10;
+}
+
 h1 {
     text-align: center;
     margin: 2em;
     font-size: 2em;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
-
-h2 {
-    font-style: italic;
 }
 
 .alien {
@@ -30,8 +31,8 @@ h2 {
 
 .logger {
     backdrop-filter: blur(100px);
-    padding: 1em 2em;
     border-radius: 1em;
+    padding: 1em;
     position: absolute;
     top: 25%;
     left: 5%;
@@ -40,9 +41,8 @@ h2 {
 
 .log {
     overflow-y: scroll;
-    height: 15em;
-    padding: 1em;
-    line-height: 2em;
+    height: 30em;
+    text-align: center;
 }
 
 ::-webkit-scrollbar {
@@ -71,12 +71,14 @@ section.grid {
 }
 
 section.grid div {
-    backdrop-filter: blur(100px);
+    background: black;
+    opacity: 50%;
     color: transparent;
     border-radius: 0.05em;
     font-size: 90px;
     font-family: Arial, Helvetica, sans-serif;
     transition: 1s;
+    cursor: pointer;
 }
 
 section.grid div#hoverable:hover {
@@ -103,15 +105,17 @@ section.grid div#hoverable:hover {
 }
 
 section.grid div.red {
-    background: rgb(255, 53, 53);
+    background: rgb(250, 184, 40);
     animation: borderR 3s;
     animation-fill-mode: forwards;
+    opacity: 100%;
 }
 
 section.grid div.blue {
-    background: rgb(123, 123, 255);
+    background: rgb(75, 247, 238);
     animation: borderR 3s ;
     animation-fill-mode: forwards;
+    opacity: 100%;
 }
 
 @keyframes borderR {
@@ -122,18 +126,18 @@ section.grid div.blue {
 
 section.grid div#hoverable.pulseRed {
     animation: pulseRed 4s infinite;
-    opacity: 30%;
+    opacity: 80%;
 }
 
 @keyframes pulseRed {
     25% {
-        background: rgb(255, 53, 53);
+        background: rgb(250, 184, 40);
     }
     50% {
         background: transparent;
     }
     75% {
-        background: rgb(255, 53, 53);
+        background: rgb(250, 184, 40);
     }
     100% {
         background: transparent;
@@ -142,18 +146,18 @@ section.grid div#hoverable.pulseRed {
 
 section.grid div#hoverable.pulseBlue {
     animation: pulseBlue 4s infinite;
-    opacity: 30%;
+    opacity: 80%;
 }
 
 @keyframes pulseBlue {
     25% {
-        background: rgb(123, 123, 255);
+        background: rgb(75, 247, 238);
     }
     50% {
         background: transparent;
     }
     75% {
-        background: rgb(123, 123, 255);
+        background: rgb(75, 247, 238);
     }
     100% {
         background: transparent;
@@ -161,13 +165,17 @@ section.grid div#hoverable.pulseBlue {
 }
 
 section.grid div.redFall {
-    background: rgb(255, 53, 53);
+    background: rgb(250, 184, 40);
     border-radius: 5em;
     opacity: 200%;
 }
 
 section.grid div.blueFall {
-    background: rgb(123, 123, 255);
+    background: rgb(75, 247, 238);
     border-radius: 5em;
     opacity: 200%;
+}
+
+p#color {
+    color: red;
 }
